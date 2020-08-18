@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef} from 'react';
 import { FormControl, InputLabel, Input, InputAdornment, FormHelperText, Button } from '@material-ui/core';
 import RoomIcon from '@material-ui/icons/Room';
 
@@ -6,10 +6,14 @@ const formStyle = {
     width: '100%'
 }
 
-export default function FormContainer() {
+export default function Form( {setCity }) {
+
+    const inputRef = useRef(null);
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
+        const [ { value } ] = inputRef.current.childNodes;
+        setCity(value);
     }
 
     return (
@@ -20,6 +24,7 @@ export default function FormContainer() {
                     id="my-input"
                     aria-describedby="my-helper-text"
                     color="secondary"
+                    ref={inputRef}
                     endAdornment={
                         <InputAdornment position="start">
                             <RoomIcon />
