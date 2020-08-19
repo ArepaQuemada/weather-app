@@ -21,6 +21,7 @@ const spinnerStyles = {
 }
 
 export default function HomePage() {
+    
     const classes = useStyles();
     const [city, setCity] = useState('New York');
     const [data, setData] = useState();
@@ -30,16 +31,17 @@ export default function HomePage() {
     useEffect(() => {
         async function fetchData() {
             const URL = `${HOST}/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
-            const data = await fetch(URL);
-            setData(await data.json());
+            const fetchedData = await fetch(URL);
+            fetchedData.status !== 200 ? setData(null) : setData(await fetchedData.json());
         }
         if (city) {
-            setShowSpinner(true);
-            const data = fetchData();
+            openSpinner();
+            fetchData();
         }
     }, [city]);
 
     useEffect(() => {
+        closeSpinner();
         if (data) {
             const parsedData = Array.from(new Set(data.list.map(item => item.dt_txt.substring(0, 10))))
                 .map(date => {
@@ -50,7 +52,9 @@ export default function HomePage() {
                 return parsedData;
             }
             setWeatherArray(removeLast(parsedData));
-            setShowSpinner(false);
+
+        } else {
+            setWeatherArray(null)
         }
     }, [data]);
 
@@ -59,6 +63,14 @@ export default function HomePage() {
             console.log(weatherArray);
         }
     }, [weatherArray])
+
+    const openSpinner = () => {
+        setShowSpinner(true);
+    }
+
+    const closeSpinner = () => {
+        setShowSpinner(false);
+    }
 
     return (
         <div className={classes.root}>
@@ -73,14 +85,16 @@ export default function HomePage() {
                     :
                     weatherArray ? weatherArray.map((elem, index) => {
                         return index === 0 ?
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12}>
                                 <Paper className={classes.paper}>{elem.dt_txt}</Paper>
                             </Grid>
                             :
-                            <Grid item xs={3} sm={6}>
+                            <Grid item xs={3}>
                                 <Paper className={classes.paper}>{elem.dt_txt}</Paper>
                             </Grid>
-                    }) : ''
+                    })
+                        :
+                        <div></div>
                 }
             </Grid>
         </div>
