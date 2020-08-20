@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import ViewCard from './ViewCard';
+import ErrorModal from './ErrorModal';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Grid, CircularProgress } from '@material-ui/core';
+import { Grid, CircularProgress } from '@material-ui/core';
 import { API_KEY, HOST } from '../utils/api';
 import Form from './Form';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,56 +24,32 @@ const spinnerStyles = {
 }
 
 export default function HomePage() {
-    
+
     const classes = useStyles();
-    const [city, setCity] = useState('New York');
+    
+    const [city, setCity] = useState();
     const [data, setData] = useState();
-    const [weatherArray, setWeatherArray] = useState();
     const [showSpinner, setShowSpinner] = useState(false);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
-            const URL = `${HOST}/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
-            const fetchedData = await fetch(URL);
-            fetchedData.status !== 200 ? setData(null) : setData(await fetchedData.json());
+            try {
+                setShowSpinner(true);
+                const URL = `${HOST}/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
+                const fetchedData = await axios.get(URL);
+                setData(fetchedData.data);
+                setError(false);
+            } catch (err) {
+                setError(true);
+            } finally {
+                setShowSpinner(false);
+            }
         }
         if (city) {
-            openSpinner();
             fetchData();
         }
     }, [city]);
-
-    useEffect(() => {
-        closeSpinner();
-        if (data) {
-            const parsedData = Array.from(new Set(data.list.map(item => item.dt_txt.substring(0, 10))))
-                .map(date => {
-                    return data.list.find(item => item.dt_txt.substring(0, 10) === date);
-                });
-            const removeLast = (parsedData) => {
-                parsedData.pop();
-                return parsedData;
-            }
-            setWeatherArray(removeLast(parsedData));
-
-        } else {
-            setWeatherArray(null)
-        }
-    }, [data]);
-
-    useEffect(() => {
-        if (weatherArray) {
-            console.log(weatherArray);
-        }
-    }, [weatherArray])
-
-    const openSpinner = () => {
-        setShowSpinner(true);
-    }
-
-    const closeSpinner = () => {
-        setShowSpinner(false);
-    }
 
     return (
         <div className={classes.root}>
@@ -82,19 +61,14 @@ export default function HomePage() {
                     <Grid item xs={12} style={spinnerStyles}>
                         <CircularProgress color="secondary" />
                     </Grid>
-                    :
-                    weatherArray ? weatherArray.map((elem, index) => {
-                        return index === 0 ?
-                            <Grid item xs={12}>
-                                <Paper className={classes.paper}>{elem.dt_txt}</Paper>
-                            </Grid>
-                            :
-                            <Grid item xs={3}>
-                                <Paper className={classes.paper}>{elem.dt_txt}</Paper>
-                            </Grid>
-                    })
+                    : error ?
+                        <ErrorModal
+                            error={error}
+                        />
                         :
-                        <div></div>
+                        <ViewCard
+                            data={data}
+                            classes={classes} />
                 }
             </Grid>
         </div>

@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
 export default function Body() {
     const classes = useStyles();
     return (
