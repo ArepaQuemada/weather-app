@@ -1,8 +1,11 @@
 import React from 'react';
-import { Paper, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import BigWeatherCard from './BigWeatherCard';
+import WeatherCard from './WeatherCard';
 
 export default function ViewCard({ data , classes }) {
     let weatherArray;
+    const { city: { country = '', name = ''} = {} } = data || {}
     if (data) {
         const parsedData = Array.from(new Set(data.list.map(item => item.dt_txt.substring(0, 10))))
             .map(date => {
@@ -19,11 +22,17 @@ export default function ViewCard({ data , classes }) {
         weatherArray ? weatherArray.map((elem, index) => {
             return index === 0 ?
                 <Grid item xs={12}>
-                    <Paper className={classes.paper}>{elem.dt_txt}</Paper>
+                    <BigWeatherCard
+                        city={name}
+                        country={country}
+                        weather={elem}
+                    />
                 </Grid>
                 :
                 <Grid item xs={3}>
-                    <Paper className={classes.paper}>{elem.dt_txt}</Paper>
+                    <WeatherCard
+                        weather={elem}
+                    />
                 </Grid>
         })
             :

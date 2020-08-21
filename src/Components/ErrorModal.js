@@ -18,12 +18,14 @@ export default function ErrorModal({ open, onClose }) {
     return (
         <Dialog onClose={handleClose} open={open}>
             <DialogTitle style={headerStyle}>
-                <WarningIcon fontSize="large"/>
+                <WarningIcon fontSize="large" />
             </DialogTitle>
             <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    <p>An error has occured. We were unable to find the city.</p>
-                    <p>Pleaste try another name.</p>
+                <DialogContentText>
+                    An error has occured. We were unable to find the city.
+                </DialogContentText>
+                <DialogContentText>
+                    Pleaste try another name.
                 </DialogContentText>
             </DialogContent>
         </Dialog>
