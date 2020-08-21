@@ -26,11 +26,16 @@ const spinnerStyles = {
 export default function HomePage() {
 
     const classes = useStyles();
-    
+
     const [city, setCity] = useState();
     const [data, setData] = useState();
     const [showSpinner, setShowSpinner] = useState(false);
     const [error, setError] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    const handleClose = () => {
+        setOpen(false);
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -42,8 +47,10 @@ export default function HomePage() {
                 setError(false);
             } catch (err) {
                 setError(true);
+                setOpen(true);
             } finally {
                 setShowSpinner(false);
+                setCity('');
             }
         }
         if (city) {
@@ -63,7 +70,8 @@ export default function HomePage() {
                     </Grid>
                     : error ?
                         <ErrorModal
-                            error={error}
+                            open={open}
+                            onClose={handleClose}
                         />
                         :
                         <ViewCard
