@@ -6,7 +6,7 @@ const formStyle = {
     width: '100%'
 }
 
-export default function Form( {setCity }) {
+export default function Form({ setCity }) {
 
     const inputRef = useRef(null);
 
