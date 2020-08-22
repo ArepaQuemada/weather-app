@@ -10,6 +10,7 @@ import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        maxWidth: 741
     },
     paper: {
         padding: theme.spacing(2),

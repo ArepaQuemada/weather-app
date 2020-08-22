@@ -11,11 +11,8 @@ export default function ViewCard({ data , classes }) {
             .map(date => {
                 return data.list.find(item => item.dt_txt.substring(0, 10) === date);
             });
-        const removeLast = (parsedData) => {
-            parsedData.pop();
-            return parsedData;
-        }
-        weatherArray = removeLast(parsedData);
+
+        weatherArray = parsedData;
     }
     
     return (
