@@ -13,7 +13,8 @@ const useStyles = makeStyles({
     },
     icon: {
         fontSize: 50,
-        margin: '25px'
+        marginTop: '25px',
+        marginBottom: '25px'
     }
 });
 

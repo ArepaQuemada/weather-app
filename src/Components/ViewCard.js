@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, makeStyles } from '@material-ui/core';
+import { Grid, makeStyles, useMediaQuery } from '@material-ui/core';
 import BigWeatherCard from './BigWeatherCard';
 import WeatherCard from './WeatherCard';
 
@@ -7,14 +7,17 @@ const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1
     },
-}))
+    size: 3
+}));
 
 export default function ViewCard({ data }) {
 
-    let weatherArray;
-    const { city: { country = '', name = '' } = {} } = data || {}
     const classes = useStyles();
-
+    const isActive = useMediaQuery('(max-width: 665px)');
+    isActive ? classes.size = 6 : classes.size = 3;
+    const { city: { country = '', name = '' } = {} } = data || {}
+    let weatherArray;
+    
     if (data) {
         const parsedData = Array.from(new Set(data.list.map(item => item.dt_txt.substring(0, 10))))
             .map(date => {
@@ -36,7 +39,7 @@ export default function ViewCard({ data }) {
                         />
                     </Grid>
                     :
-                    <Grid item xs={3} key={index}>
+                    <Grid item xs={classes.size} key={index}>
                         <WeatherCard
                             weather={elem}
                         />
