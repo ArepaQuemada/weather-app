@@ -12,17 +12,11 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         maxWidth: 741
     },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
+    spinner: {
+        display: 'flex',
+        justifyContent: 'center'
+    }
 }));
-
-const spinnerStyles = {
-    display: 'flex',
-    justifyContent: 'center'
-}
 
 export default function HomePage() {
 
@@ -61,12 +55,12 @@ export default function HomePage() {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} justify="center" alignItems="center">
                 <Grid item xs={12}>
                     <Form setCity={setCity} />
                 </Grid>
                 {showSpinner ?
-                    <Grid item xs={12} style={spinnerStyles}>
+                    <Grid item xs={12} className={classes.spinner}>
                         <CircularProgress color="secondary" />
                     </Grid>
                     : error ?
