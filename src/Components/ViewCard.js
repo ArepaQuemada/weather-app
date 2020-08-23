@@ -1,32 +1,55 @@
 import React from 'react';
-import { Paper, Grid } from '@material-ui/core';
+import { Grid, makeStyles, useMediaQuery } from '@material-ui/core';
+import BigWeatherCard from './BigWeatherCard';
+import WeatherCard from './WeatherCard';
 
-export default function ViewCard({ data , classes }) {
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1
+    },
+    size: 3
+}));
+
+export default function ViewCard({ data }) {
+
+    const classes = useStyles();
+    const isActive = useMediaQuery('(max-width: 665px)');
+    isActive ? classes.size = 6 : classes.size = 3;
+    const { city: { country = '', name = '' } = {} } = data || {}
     let weatherArray;
+
     if (data) {
         const parsedData = Array.from(new Set(data.list.map(item => item.dt_txt.substring(0, 10))))
             .map(date => {
                 return data.list.find(item => item.dt_txt.substring(0, 10) === date);
             });
-        const removeLast = (parsedData) => {
+        if (parsedData.length > 4) {
             parsedData.pop();
-            return parsedData;
         }
-        weatherArray = removeLast(parsedData);
+        weatherArray = parsedData;
     }
-    
+
     return (
-        weatherArray ? weatherArray.map((elem, index) => {
-            return index === 0 ?
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>{elem.dt_txt}</Paper>
-                </Grid>
+        <Grid container className={classes.root} spacing={1}>
+            {weatherArray ? weatherArray.map((elem, index) => {
+                return index === 0 ?
+                    <Grid item xs={12} key={index}>
+                        <BigWeatherCard
+                            city={name}
+                            country={country}
+                            weather={elem}
+                        />
+                    </Grid>
+                    :
+                    <Grid item xs={classes.size} key={index}>
+                        <WeatherCard
+                            weather={elem}
+                        />
+                    </Grid>
+            })
                 :
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>{elem.dt_txt}</Paper>
-                </Grid>
-        })
-            :
-            <div></div>
+                <div></div>
+            }
+        </Grid>
     );
 }
