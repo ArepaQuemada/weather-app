@@ -1,10 +1,12 @@
 import React from 'react';
-import Body from './Components/Body';
 import 'weather-icons/css/weather-icons.css'
+import Header from './Components/Header';
 
 function App() {
   return (
-    <Body/>
+    <div>
+      <Header/>
+    </div>
   );
 }
 
