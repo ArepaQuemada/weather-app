@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         textDecoration: 'none'
+    },
+    font: {
+        color: '#FFFFFF'
     }
 }));
 
@@ -38,10 +41,10 @@ export default function Header() {
                             Weather App
                         </Typography>
                         <Link to="/" className={classes.link}>
-                            <Button color="secondary">HOME</Button>
+                            <Button className={classes.font}>HOME</Button>
                         </Link>
                         <Link to="about" className={classes.link}>
-                            <Button color="secondary">ABOUT</Button>
+                            <Button className={classes.font}>ABOUT</Button>
                         </Link>
                     </Toolbar>
                 </AppBar>

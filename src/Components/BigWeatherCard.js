@@ -9,10 +9,12 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor: '#302DC5',
+        color: '#FFFFFF'
     },
     icon: {
-        fontSize: 50,
+        fontSize: 55,
         marginTop: '25px',
         marginBottom: '25px'
     }
@@ -33,7 +35,9 @@ export default function BigCard ({ country, city, weather }) {
                 <Typography variant="h5" component="h3">
                     {temp}° {main}
                 </Typography>
-                <i className={`wi ${iconClass} ${classes.icon}`}></i>
+                <Typography color="secondary">
+                    <i className={`wi ${iconClass} ${classes.icon}`}></i>
+                </Typography>
                 <Typography variant="body1">
                     {temp_max}° - {temp_min}°
                 </Typography>

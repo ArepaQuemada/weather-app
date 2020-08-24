@@ -6,6 +6,10 @@ const formStyle = {
     width: '100%'
 }
 
+const fontColor = {
+    color: '#FFFFFF'
+}
+
 export default function Form({ setCity }) {
 
     const inputRef = useRef(null);
@@ -19,18 +23,19 @@ export default function Form({ setCity }) {
     return (
         <form onSubmit={handleSubmit}>
             <FormControl style={formStyle}>
-                <InputLabel htmlFor="my-input">City name</InputLabel>
+                <InputLabel htmlFor="my-input" style={fontColor}>City name</InputLabel>
                 <Input
                     id="my-input"
                     aria-describedby="my-helper-text"
-                    color="secondary"
+                    color="primary"
                     ref={inputRef}
+                    style={fontColor}
                     endAdornment={
                         <InputAdornment position="start">
                             <RoomIcon />
                         </InputAdornment>
                     } />
-                <FormHelperText id="my-helper-text">Ej: New York</FormHelperText>
+                <FormHelperText id="my-helper-text" style={fontColor}>Ej: New York</FormHelperText>
                 <Button variant="contained" color="primary" type="submit">Search</Button>
             </FormControl>
         </form>
