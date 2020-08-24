@@ -27,7 +27,7 @@ export default function HomePage() {
     const [error, setError] = useState(false);
     const [open, setOpen] = useState(false);
     const API_KEY = '211b593884e17ba50a9c07162cafe2b7';
-    const HOST = 'http://api.openweathermap.org';
+    const HOST = 'https://api.openweathermap.org';
     
     const handleClose = () => {
         setOpen(false);
