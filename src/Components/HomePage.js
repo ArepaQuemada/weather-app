@@ -3,7 +3,6 @@ import ViewCard from './ViewCard';
 import ErrorModal from './ErrorModal';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, CircularProgress } from '@material-ui/core';
-import { API_KEY, HOST } from '../utils/api';
 import Form from './Form';
 import axios from 'axios';
 
@@ -27,7 +26,9 @@ export default function HomePage() {
     const [showSpinner, setShowSpinner] = useState(false);
     const [error, setError] = useState(false);
     const [open, setOpen] = useState(false);
-
+    const API_KEY = '8373e8e4c032144bd4624911cc6b3da2';
+    const HOST = 'http://api.openweathermap.org';
+    
     const handleClose = () => {
         setOpen(false);
     }
@@ -61,7 +62,7 @@ export default function HomePage() {
                 </Grid>
                 {showSpinner ?
                     <Grid item xs={12} className={classes.spinner}>
-                        <CircularProgress color="secondary" />
+                        <CircularProgress color="primary" />
                     </Grid>
                     : error ?
                         <ErrorModal
