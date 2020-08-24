@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         color: '#FFFFFF'
     },
     icon: {
-        fontSize: 30
+        fontSize: 25
     }
 }))
 

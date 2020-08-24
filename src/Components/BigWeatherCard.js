@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         color: '#FFFFFF'
     },
     icon: {
-        fontSize: 55,
+        fontSize: 45,
         marginTop: '25px',
         marginBottom: '25px'
     }
