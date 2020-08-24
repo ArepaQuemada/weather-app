@@ -26,7 +26,7 @@ export default function HomePage() {
     const [showSpinner, setShowSpinner] = useState(false);
     const [error, setError] = useState(false);
     const [open, setOpen] = useState(false);
-    const API_KEY = '8373e8e4c032144bd4624911cc6b3da2';
+    const API_KEY = '211b593884e17ba50a9c07162cafe2b7';
     const HOST = 'http://api.openweathermap.org';
     
     const handleClose = () => {
