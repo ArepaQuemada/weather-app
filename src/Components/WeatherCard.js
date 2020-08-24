@@ -10,10 +10,12 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor: '#302DC5',
+        color: '#FFFFFF'
     },
     icon: {
-        fontSize: 25
+        fontSize: 30
     }
 }))
 
@@ -25,12 +27,14 @@ export default function WeatherCard ({ weather }) {
     const day = dateFormat(dt_txt, "dddd");
 
     return (
-        <Card>
+        <Card color="secondary">
             <CardContent className={classes.root}>
                 <Typography>
                     {day}
                 </Typography>
-                <i className={`wi ${iconClass} ${classes.icon}`}></i>
+                <Typography color="secondary">
+                    <i className={`wi ${iconClass} ${classes.icon}`}></i>
+                </Typography>
                 <Typography variant="h5">
                     {temp}° 
                 </Typography>
