@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        backgroundColor: '#302DC5',
+        backgroundColor: '#4a148c',
         color: '#FFFFFF'
     },
     icon: {
@@ -38,7 +38,7 @@ export default function WeatherCard ({ weather }) {
                 <Typography className={classes.days}>
                     {day}
                 </Typography>
-                <Typography color="secondary">
+                <Typography color="inherit">
                     <i className={`wi ${iconClass} ${classes.icon}`}></i>
                 </Typography>
                 <Typography variant="h5" component="h4">

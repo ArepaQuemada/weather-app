@@ -36,7 +36,7 @@ export default function Header() {
             <div className={classes.root}>
                 <AppBar position="static" color="primary">
                     <Toolbar>
-                        <WbSunnyIcon edge="start" className={classes.menuButton} color="inherit" />
+                        <WbSunnyIcon edge="start" className={classes.menuButton} color="secondary" />
                         <Typography variant="h6" className={classes.title}>
                             Weather App
                         </Typography>
