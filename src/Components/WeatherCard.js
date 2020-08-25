@@ -16,6 +16,12 @@ const useStyles = makeStyles(theme => ({
     },
     icon: {
         fontSize: 25
+    },
+    days: {
+        fontWeight: 'bold'
+    },
+    description: {
+        textTransform: 'capitalize'
     }
 }))
 
@@ -29,16 +35,16 @@ export default function WeatherCard ({ weather }) {
     return (
         <Card color="secondary">
             <CardContent className={classes.root}>
-                <Typography>
+                <Typography className={classes.days}>
                     {day}
                 </Typography>
                 <Typography color="secondary">
                     <i className={`wi ${iconClass} ${classes.icon}`}></i>
                 </Typography>
-                <Typography variant="h5">
+                <Typography variant="h5" component="h4">
                     {temp}° 
                 </Typography>
-                <Typography>
+                <Typography className={classes.description}>
                     {description}
                 </Typography>
             </CardContent>
