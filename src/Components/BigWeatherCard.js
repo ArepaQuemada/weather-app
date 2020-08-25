@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, makeStyles } from '@material-ui/core';
+import { Card, CardContent, Typography, makeStyles, Grid } from '@material-ui/core';
 import icons from '../icons/icons.json';
 
 const useStyles = makeStyles({
@@ -13,46 +13,58 @@ const useStyles = makeStyles({
         backgroundColor: '#302DC5',
         color: '#FFFFFF'
     },
+    content: {
+        width: '75%'
+    },
     icon: {
         fontSize: 45,
         marginTop: '25px',
         marginBottom: '25px'
+    },
+    container: {
+        flexGrow: 1
+    },
+    description: {
+        textTransform: 'capitalize'
     }
 });
 
-export default function BigCard ({ country, city, weather }) {
+export default function BigWeatherCard ({ country, city, weather }) {
     
     const classes = useStyles();
-    const { dt_txt,  main: { humidity, temp, temp_max, temp_min, feels_like }  = {}, weather: [{ description, main, icon }] = [] } = weather || {};
+    const { main: { humidity, temp, temp_max, temp_min, feels_like }  = {}, weather: [{ description, icon }] = [] } = weather || {};
     const iconClass = (icons[icon] || {}).icon;
     
     return (
         <Card variant="outlined" className={classes.root}>
-            <CardContent>
+            <CardContent className={classes.content}>
                 <Typography variant="h4" component="h2">
                     {city} / {country}
                 </Typography>
                 <Typography variant="h5" component="h3">
-                    {temp}° {main}
+                    {temp}°
                 </Typography>
                 <Typography color="secondary">
                     <i className={`wi ${iconClass} ${classes.icon}`}></i>
                 </Typography>
                 <Typography variant="body1">
-                    {temp_max}° - {temp_min}°
+                    {temp_max}° | {temp_min}°
                 </Typography>
-                <Typography>
+                <Typography className={classes.description}>
                     {description}
                 </Typography>
-                <Typography>
-                    {humidity}
-                </Typography>
-                <Typography>
-                    {feels_like}°
-                </Typography>
-                <Typography>
-                    {dt_txt}
-                </Typography>
+                <Grid container className={classes.container}>
+                    <Grid item xs={6}>
+                        <Typography>
+                            Humidity: {humidity}%
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>
+                            Feels Like: {feels_like}°
+                        </Typography>
+                    </Grid>
+                </Grid>
             </CardContent>
         </Card> 
     );

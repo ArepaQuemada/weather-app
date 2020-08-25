@@ -34,6 +34,10 @@ export default function HomePage() {
     }
 
     useEffect(() => {
+        console.log('render');
+    })
+
+    useEffect(() => {
         async function fetchData() {
             try {
                 setShowSpinner(true);
