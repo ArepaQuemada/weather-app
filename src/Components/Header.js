@@ -43,7 +43,7 @@ export default function Header() {
                         <Link to="/weather-app" className={classes.link}>
                             <Button className={classes.font}>HOME</Button>
                         </Link>
-                        <Link to="about" className={classes.link}>
+                        <Link to="/about" className={classes.link}>
                             <Button className={classes.font}>ABOUT</Button>
                         </Link>
                     </Toolbar>
