@@ -36,11 +36,11 @@ export default function Header() {
             <div className={classes.root}>
                 <AppBar position="static" color="primary">
                     <Toolbar>
-                        <WbSunnyIcon edge="start" className={classes.menuButton} color="inherit" />
+                        <WbSunnyIcon edge="start" className={classes.menuButton} color="secondary" />
                         <Typography variant="h6" className={classes.title}>
                             Weather App
                         </Typography>
-                        <Link to="/weather-app" className={classes.link}>
+                        <Link to="/" className={classes.link}>
                             <Button className={classes.font}>HOME</Button>
                         </Link>
                         <Link to="about" className={classes.link}>
@@ -53,7 +53,7 @@ export default function Header() {
                 <Route path="/about">
                     <About/>
                 </Route>
-                <Route exact path="/weather-app">
+                <Route path="/">
                     <Body/>
                 </Route>
             </Switch>
