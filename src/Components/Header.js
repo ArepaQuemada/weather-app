@@ -40,7 +40,7 @@ export default function Header() {
                         <Typography variant="h6" className={classes.title}>
                             Weather App
                         </Typography>
-                        <Link to="/" className={classes.link}>
+                        <Link to="/weather-app" className={classes.link}>
                             <Button className={classes.font}>HOME</Button>
                         </Link>
                         <Link to="about" className={classes.link}>
