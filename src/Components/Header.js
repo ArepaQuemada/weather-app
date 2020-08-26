@@ -32,7 +32,7 @@ export default function Header() {
     const classes = useStyles();
 
     return (
-        <Router>
+        <Router basename="/weather-app">
             <div className={classes.root}>
                 <AppBar position="static" color="primary">
                     <Toolbar>
@@ -40,7 +40,7 @@ export default function Header() {
                         <Typography variant="h6" className={classes.title}>
                             Weather App
                         </Typography>
-                        <Link to="/weather-app" className={classes.link}>
+                        <Link to="/" className={classes.link}>
                             <Button className={classes.font}>HOME</Button>
                         </Link>
                         <Link to="/about" className={classes.link}>
@@ -50,12 +50,8 @@ export default function Header() {
                 </AppBar>
             </div>
             <Switch>
-                <Route exact path="/weather-app">
-                     <Body/>
-                </Route>
-                <Route path="/about">
-                    <About/>
-                </Route>
+                <Route exact path="/" component={Body} />
+                <Route path="/about" component={About} />
             </Switch>
         </Router>
     );
