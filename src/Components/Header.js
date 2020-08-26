@@ -50,11 +50,11 @@ export default function Header() {
                 </AppBar>
             </div>
             <Switch>
-                <Route path="/about">
-                    <About/>
-                </Route>
                 <Route exact path="/weather-app">
                     <Body/>
+                </Route>
+                <Route path="/about">
+                    <About/>
                 </Route>
             </Switch>
         </Router>
