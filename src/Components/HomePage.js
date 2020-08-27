@@ -4,7 +4,7 @@ import ErrorModal from './ErrorModal';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, CircularProgress } from '@material-ui/core';
 import Form from './Form';
-import axios from 'axios';
+import { getWeather } from '../api/api';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,31 +26,14 @@ export default function HomePage() {
     const [showSpinner, setShowSpinner] = useState(false);
     const [error, setError] = useState(false);
     const [open, setOpen] = useState(false);
-    const API_KEY = '211b593884e17ba50a9c07162cafe2b7';
-    const HOST = 'https://api.openweathermap.org';
-    
+
     const handleClose = () => {
         setOpen(false);
     }
 
     useEffect(() => {
-        async function fetchData() {
-            try {
-                setShowSpinner(true);
-                const URL = `${HOST}/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
-                const fetchedData = await axios.get(URL);
-                setData(fetchedData.data);
-                setError(false);
-            } catch (err) {
-                setError(true);
-                setOpen(true);
-            } finally {
-                setShowSpinner(false);
-                setCity('');
-            }
-        }
         if (city) {
-            fetchData();
+            getWeather(city, setShowSpinner, setError, setData, setOpen);
         }
     }, [city]);
 
@@ -63,16 +46,18 @@ export default function HomePage() {
                 {showSpinner ?
                     <Grid item xs={12} className={classes.spinner}>
                         <CircularProgress color="primary" />
-                    </Grid>
-                    : error ?
-                        <ErrorModal
-                            open={open}
-                            onClose={handleClose}
-                        />
-                        :
-                        <ViewCard
-                            data={data}
-                            classes={classes} />
+                    </Grid> : <div></div> 
+                }             
+                {error ?
+                    <ErrorModal
+                        open={open}
+                        onClose={handleClose}
+                    /> : <div></div>
+                }   
+                {data && !showSpinner ? 
+                   <ViewCard
+                    data={data}
+                    classes={classes} /> : <div></div>
                 }
             </Grid>
         </div>

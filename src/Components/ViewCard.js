@@ -17,16 +17,17 @@ export default function ViewCard({ data }) {
     isActive ? classes.size = 6 : classes.size = 3;
     const { city: { country = '', name = '' } = {} } = data || {}
     let weatherArray;
+    let dateFormat = require('dateformat');
 
     if (data) {
-        const parsedData = Array.from(new Set(data.list.map(item => item.dt_txt.substring(0, 10))))
-            .map(date => {
-                return data.list.find(item => item.dt_txt.substring(0, 10) === date);
-            });
-        if (parsedData.length > 4) {
-            parsedData.pop();
-        }
-        weatherArray = parsedData;
+         weatherArray = data.list.filter((item, index) => {
+            if (index === 0) {
+                return item;
+            } else {
+                const hour = dateFormat(item.dt_txt, 'h:MM:ss TT');
+                return hour === '3:00:00 PM'
+            }
+        });
     }
 
     return (
