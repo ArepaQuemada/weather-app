@@ -8,7 +8,10 @@ const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1
     },
-    size: 3
+    size: 3,
+    link: {
+        textDecoration: 'none'
+    }
 }));
 
 export default function ViewCard({ data }) {
@@ -21,7 +24,7 @@ export default function ViewCard({ data }) {
     let dateFormat = require('dateformat');
 
     if (data) {
-         weatherArray = data.list.filter((item, index) => {
+        weatherArray = data.list.filter((item, index) => {
             if (index === 0) {
                 return item;
             } else {
@@ -36,21 +39,30 @@ export default function ViewCard({ data }) {
             {weatherArray ? weatherArray.map((elem, index) => {
                 return index === 0 ?
                     <Grid item xs={12} key={index}>
-                        <BigWeatherCard
-                            city={name}
-                            country={country}
-                            weather={elem}
-                        />
-                    </Grid>
-                    :
-                    <Grid item xs={classes.size} key={index}>
-                        <Link to={
+                        <Link className={classes.link} to={
                             {
                                 pathname: `/${data.city.id}`,
                                 state: {
                                     data: data,
                                     date: elem.dt_txt
-                                } 
+                                }
+                            }}>
+                            <BigWeatherCard
+                                city={name}
+                                country={country}
+                                weather={elem}
+                            />
+                        </Link>
+                    </Grid>
+                    :
+                    <Grid item xs={classes.size} key={index}>
+                        <Link className={classes.link} to={
+                            {
+                                pathname: `/${data.city.id}`,
+                                state: {
+                                    data: data,
+                                    date: elem.dt_txt
+                                }
                             }}>
                             <WeatherCard
                                 weather={elem}

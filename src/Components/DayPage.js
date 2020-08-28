@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import dateFormat from 'dateformat';
 import ListWeather from './ListWeather';
@@ -14,7 +14,7 @@ export default function DayPage() {
             const dayOfWeek = dateFormat(elem.dt_txt, 'dddd');
             return dayOfWeek === day;
         });
-        console.log(weatherArray)
+
         return (
             <>
                 {weatherArray.map((elem, index) => {

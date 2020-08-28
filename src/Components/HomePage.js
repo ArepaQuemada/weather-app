@@ -9,7 +9,8 @@ import { getWeather } from '../api/api';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        maxWidth: 741
+        maxWidth: 741,
+        textDecoration: 'none'
     },
     spinner: {
         display: 'flex',
@@ -25,8 +26,6 @@ export default function HomePage() {
     const [showSpinner, setShowSpinner] = useState(false);
     const [error, setError] = useState(false);
     const [open, setOpen] = useState(false);
-
-    console.log(data)
 
     const handleClose = () => {
         setOpen(false);
