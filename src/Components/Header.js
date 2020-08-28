@@ -9,6 +9,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import DayPage from './DayPage';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,6 +53,7 @@ export default function Header() {
             <Switch>
                 <Route exact path="/" component={Body} />
                 <Route path="/about" component={About} />
+                <Route path="/:id" component={DayPage} />
             </Switch>
         </Router>
     );

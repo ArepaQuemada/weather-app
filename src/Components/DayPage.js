@@ -1,17 +1,31 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import dateFormat from 'dateformat';
+import ListWeather from './ListWeather';
 
 export default function DayPage() {
 
-    useEffect(() => {
+    const location = useLocation();
+    const { data, date } = location.state;
+    const day = dateFormat(date, 'dddd');
 
-    }, [])
+    if (data) {
+        const weatherArray = data.list.filter(elem => {
+            const dayOfWeek = dateFormat(elem.dt_txt, 'dddd');
+            return dayOfWeek === day;
+        });
+        console.log(weatherArray)
+        return (
+            <>
+                {weatherArray.map((elem, index) => {
+                    return (
+                        <ListWeather key={index}
+                            weather={elem}
+                        />          
+                    )
+                })}
+            </>
+        )
+    }
 
-    let { id } = useParams();
-    console.log(id);
-    return (
-        <div>
-            Pagina de dia
-        </div>
-    )
 }

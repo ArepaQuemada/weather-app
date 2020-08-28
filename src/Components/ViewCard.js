@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, makeStyles, useMediaQuery } from '@material-ui/core';
 import BigWeatherCard from './BigWeatherCard';
 import WeatherCard from './WeatherCard';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,9 +44,18 @@ export default function ViewCard({ data }) {
                     </Grid>
                     :
                     <Grid item xs={classes.size} key={index}>
-                        <WeatherCard
-                            weather={elem}
-                        />
+                        <Link to={
+                            {
+                                pathname: `/${data.city.id}`,
+                                state: {
+                                    data: data,
+                                    date: elem.dt_txt
+                                } 
+                            }}>
+                            <WeatherCard
+                                weather={elem}
+                            />
+                        </Link>
                     </Grid>
             })
                 :

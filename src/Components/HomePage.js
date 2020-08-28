@@ -20,12 +20,13 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
 
     const classes = useStyles();
-
     const [city, setCity] = useState();
     const [data, setData] = useState();
     const [showSpinner, setShowSpinner] = useState(false);
     const [error, setError] = useState(false);
     const [open, setOpen] = useState(false);
+
+    console.log(data)
 
     const handleClose = () => {
         setOpen(false);
@@ -53,7 +54,7 @@ export default function HomePage() {
                         open={open}
                         onClose={handleClose}
                     /> : <div></div>
-                }   
+                } 
                 {data && !showSpinner ? 
                    <ViewCard
                     data={data}
