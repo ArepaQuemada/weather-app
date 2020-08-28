@@ -9,7 +9,8 @@ import { getWeather } from '../api/api';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        maxWidth: 741
+        maxWidth: 741,
+        textDecoration: 'none'
     },
     spinner: {
         display: 'flex',
@@ -20,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
 
     const classes = useStyles();
-
     const [city, setCity] = useState();
     const [data, setData] = useState();
     const [showSpinner, setShowSpinner] = useState(false);
@@ -53,7 +53,7 @@ export default function HomePage() {
                         open={open}
                         onClose={handleClose}
                     /> : <div></div>
-                }   
+                } 
                 {data && !showSpinner ? 
                    <ViewCard
                     data={data}
