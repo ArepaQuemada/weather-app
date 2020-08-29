@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Grid, makeStyles, useMediaQuery } from '@material-ui/core';
 import BigWeatherCard from './BigWeatherCard';
 import WeatherCard from './WeatherCard';
 import { Link } from 'react-router-dom';
+import { DataContext } from '../App';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -14,15 +15,16 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function ViewCard({ data }) {
+export default function ViewCard() {
 
     const classes = useStyles();
     const isActive = useMediaQuery('(max-width: 665px)');
     isActive ? classes.size = 6 : classes.size = 3;
+    const [ data ] = useContext(DataContext);
     const { city: { country = '', name = '' } = {} } = data || {}
     let weatherArray;
     let dateFormat = require('dateformat');
-
+    
     if (data) {
         weatherArray = data.list.filter((item, index) => {
             if (index === 0) {
@@ -43,7 +45,6 @@ export default function ViewCard({ data }) {
                             {
                                 pathname: `/${data.city.id}`,
                                 state: {
-                                    data: data,
                                     date: elem.dt_txt
                                 }
                             }}>
@@ -60,7 +61,6 @@ export default function ViewCard({ data }) {
                             {
                                 pathname: `/${data.city.id}`,
                                 state: {
-                                    data: data,
                                     date: elem.dt_txt
                                 }
                             }}>
