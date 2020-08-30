@@ -6,6 +6,7 @@ import icons from '../icons/icons.json';
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
+      opacity: '0.4'
     },
     heading: {
       flexBasis: '13.33%',
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         fontSize: 25
     },
+    summary: {
+      color: '#000000'
+    }
   }));
 
 export default function ListWeather({ weather }) {
@@ -27,7 +31,7 @@ export default function ListWeather({ weather }) {
     return (
         <>
             <Accordion className={classes.root}>
-                <AccordionSummary>
+                <AccordionSummary className={classes.summary}>
                     <Typography className={classes.heading}>{dateFormat(dt_txt, 'hh TT')}</Typography>
                     <Typography className={`${classes.heading} ${classes.secondaryHeading}`}>{temp}°</Typography>
                     <Typography className={classes.heading} color="inherit">
