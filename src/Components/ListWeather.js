@@ -6,7 +6,10 @@ import icons from '../icons/icons.json';
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      opacity: '0.4'
+      opacity: '0.4',
+      '&:hover': {
+          opacity: '0.5'
+      }
     },
     heading: {
       flexBasis: '13.33%',

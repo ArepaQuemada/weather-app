@@ -12,7 +12,11 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         textAlign: 'center',
         backgroundColor: '#4a148c',
-        color: '#FFFFFF'
+        color: '#FFFFFF',
+        opacity: "0.7",        
+        '&:hover': {
+            opacity: '0.8'
+        }
     },
     icon: {
         fontSize: 25
@@ -33,8 +37,8 @@ export default function WeatherCard ({ weather }) {
     const day = dateFormat(dt_txt, "dddd");
 
     return (
-        <Card color="secondary">
-            <CardContent className={classes.root}>
+        <Card color="secondary" className={classes.root}>
+            <CardContent>
                 <Typography className={classes.days}>
                     {day}
                 </Typography>
