@@ -11,7 +11,11 @@ const useStyles = makeStyles({
         alignItems: 'center',
         textAlign: 'center',
         backgroundColor: '#4a148c',
-        color: '#FFFFFF'
+        color: '#FFFFFF',
+        opacity: "0.7",
+        '&:hover': {
+            opacity: '0.8'
+        }
     },
     content: {
         width: '75%'
