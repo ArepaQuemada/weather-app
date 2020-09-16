@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, Typography, makeStyles, Grid } from '@material-ui/core';
 import icons from '../icons/icons.json';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     root: {
         minWidth: 275,
         display: 'flex',
@@ -10,11 +10,11 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        backgroundColor: '#4a148c',
+        backgroundColor: theme.palette.primary.light,
         color: '#FFFFFF',
-        opacity: "0.7",
+        transition: '.2s',
         '&:hover': {
-            opacity: '0.8'
+            backgroundColor: theme.palette.primary.main,
         }
     },
     content: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     description: {
         textTransform: 'capitalize'
     }
-});
+}));
 
 export default function BigWeatherCard ({ country, city, weather }) {
     

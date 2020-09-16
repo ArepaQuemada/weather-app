@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import dateFormat from 'dateformat';
 import ListWeather from './ListWeather';
 import { DataContext } from '../App';
+import { Route, Redirect } from 'react-router-dom';
 
 export default function DayPage() {
 
@@ -29,5 +30,11 @@ export default function DayPage() {
             </>
         )
     }
-
+    return (
+        <Route>
+            <Redirect to={{
+                pathName: '/'
+            }}></Redirect>
+        </Route>
+    )
 }

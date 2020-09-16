@@ -12,9 +12,6 @@ import {
 import DayPage from './DayPage';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
     menuButton: {
         marginRight: theme.spacing(1),
     },
@@ -34,26 +31,24 @@ export default function Header() {
 
     return (
         <Router basename="/weather-app">
-            <div className={classes.root}>
-                <AppBar position="static" color="primary">
-                    <Toolbar>
-                        <WbSunnyIcon edge="start" className={classes.menuButton} color="secondary" />
-                        <Typography variant="h6" className={classes.title}>
-                            Weather App
+            <AppBar position="static" color="primary">
+                <Toolbar>
+                    <WbSunnyIcon edge="start" className={classes.menuButton} color="secondary" />
+                    <Typography variant="h6" className={classes.title}>
+                        Weather App
                         </Typography>
-                        <Link to="/" className={classes.link}>
-                            <Button className={classes.font}>HOME</Button>
-                        </Link>
-                        <Link to="/about" className={classes.link}>
-                            <Button className={classes.font}>ABOUT</Button>
-                        </Link>
-                    </Toolbar>
-                </AppBar>
-            </div>
+                    <Link to="/" className={classes.link}>
+                        <Button className={classes.font}>HOME</Button>
+                    </Link>
+                    <Link to="/about" className={classes.link}>
+                        <Button className={classes.font}>ABOUT</Button>
+                    </Link>
+                </Toolbar>
+            </AppBar>
             <Switch>
-                <Route exact path="/" component={Body} />
                 <Route path="/about" component={About} />
                 <Route path="/:id" component={DayPage} />
+                <Route exact path="/" component={Body} />
             </Switch>
         </Router>
     );

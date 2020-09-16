@@ -11,11 +11,11 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        backgroundColor: '#4a148c',
+        backgroundColor: theme.palette.primary.light,
         color: '#FFFFFF',
-        opacity: "0.7",        
+        transition: '.2s',
         '&:hover': {
-            opacity: '0.8'
+            backgroundColor: theme.palette.primary.main,
         }
     },
     icon: {

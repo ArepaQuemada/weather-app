@@ -3,17 +3,18 @@ import { Accordion, AccordionDetails, AccordionSummary, Typography, makeStyles }
 import dateFormat from 'dateformat'
 import icons from '../icons/icons.json';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     root: {
-      width: '100%',
-      opacity: '0.4',
-      '&:hover': {
-          opacity: '0.5'
-      }
+        width: '100%',
+        background: theme.palette.neutral.light,
+        transition: '.2s',
+        '&:hover': {
+            backgroundColor: theme.palette.neutral.main
+        }
     },
     heading: {
-      flexBasis: '13.33%',
-      flexShrink: 0
+        flexBasis: '13.33%',
+        flexShrink: 0
     },
     secondaryHeading: {
         fontWeight: 'bold'
@@ -22,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 25
     },
     summary: {
-      color: '#000000'
+        color: '#000000'
     }
-  }));
+}));
 
 export default function ListWeather({ weather }) {
 
     const classes = useStyles();
-    const { dt_txt, main: { temp, humidity } = {}, weather: [{ description, icon, main }] = [] } = weather || {};
+    const { dt_txt, main: { temp, humidity } = {}, weather: [{ icon, main }] = [] } = weather || {};
     const iconClass = (icons[icon] || {}).icon;
     return (
         <>
@@ -53,5 +54,5 @@ export default function ListWeather({ weather }) {
                 </AccordionDetails>
             </Accordion>
         </>
-    )
+    );
 }

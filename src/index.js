@@ -7,13 +7,15 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#4a148c'
+            main: '#4a148c',
+            light: 'rgb(70, 20, 140, 0.6)',
         },
         secondary: {
             main: '#ef534e'
         },
-        default: {
-            main: '#E133D8'
+        neutral: {
+            main: 'rgb(255, 255, 255, 0.8)',
+            light: 'rgb(255, 255, 255, 0.5)'
         },
         font: {
             main: "#FFFFFF"

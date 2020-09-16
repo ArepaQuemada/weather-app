@@ -1,5 +1,5 @@
 body {
     background-color: #E1E2E1;     
     margin: 0;
-    background-image: url("./assets/img/background.jpg");
+    background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)), url("./assets/img/background.jpg");
 }
