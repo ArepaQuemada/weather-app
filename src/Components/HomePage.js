@@ -39,6 +39,12 @@ export default function HomePage() {
         }
     }, [ city, setData ]);
 
+    useEffect(() => {
+        if (error) {
+            setData(undefined);
+        }
+    }, [error])
+
     return (
         <div className={classes.root}>
             <Grid container spacing={1} justify="center" alignItems="center">
