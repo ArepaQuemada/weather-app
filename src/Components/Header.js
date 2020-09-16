@@ -4,7 +4,7 @@ import About from './About';
 import Body from './Body';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
     Link
