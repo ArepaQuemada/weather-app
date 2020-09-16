@@ -9,7 +9,7 @@ export default function DayPage() {
 
     const [data] = useContext(DataContext);
     const location = useLocation();
-    const { date } = location.state;
+    const { date } = (location.state) || {};
     const day = dateFormat(date, 'dddd');
 
     if (data) {
