@@ -49,6 +49,7 @@ export default function Header() {
                 <Route path="/about" component={About} />
                 <Route path="/:id" component={DayPage} />
                 <Route exact path="/" component={Body} />
+                <Route path="*" component={Body} />
             </Switch>
         </Router>
     );
