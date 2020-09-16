@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,KACI,wBAAyB,CACzB,QAAS,CACT,wHACJ","file":"main.adef3b45.chunk.css","sourcesContent":["body {\r\n    background-color: #E1E2E1;     \r\n    margin: 0;\r\n    background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)), url(\"./assets/img/background.jpg\");\r\n}"]}
